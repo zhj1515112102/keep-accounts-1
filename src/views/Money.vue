@@ -1,6 +1,6 @@
 <template>
-  <div>111
-    <Nav/>
+  <div>
+    <Layout>Money.vue</Layout>
   </div>
 </template>
 

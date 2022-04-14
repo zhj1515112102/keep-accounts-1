@@ -1,7 +1,6 @@
 <template>
-  <div>333
-    <Nav/>
-
+  <div>
+    <Layout>333</Layout>
   </div>
 </template>
 
