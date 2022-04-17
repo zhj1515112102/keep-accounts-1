@@ -1,11 +1,11 @@
 <template>
   <div class="tags">
     <div class="addTag">
-      <button>新增标签</button>
+      <button @click="create">新增标签</button>
     </div>
     <ul class="currentTag">
       <li v-for="tag in dataSource" :key="tag"
-          :class="{selected:selectedTags.indexOf(tag)>=0}"
+          :class="{selected: selectedTags.indexOf(tag)>=0}"
           @click="toggle(tag)">{{ tag }}
       </li>
     </ul>
@@ -27,6 +27,15 @@ export default class Tage extends Vue {
       this.selectedTags.splice(index,1);
     }else{
       this.selectedTags.push(tag);
+    }
+  }
+  create(){
+    const name = window.prompt('请输入标签名');
+    if(name===''){
+      window.alert('标签不能为空');
+    }else if(this.dataSource){
+      this.$emit('update:dataSource',
+        [...this.dataSource,name])
     }
   }
 }
