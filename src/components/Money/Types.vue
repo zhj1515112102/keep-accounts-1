@@ -10,23 +10,20 @@
 </template>
 
 <script lang="ts">
+/*eslint-disable*/
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Prop} from 'vue-property-decorator';
 
 @Component
 export default class Types extends Vue{
-  type='-';
+  @Prop() readonly type!: string
   selectType(type:string){
     if(type!=='-' && type!=='+'){
       throw new Error('type is unknown')
     }
-    this.type = type;
+    this.$emit('update:value',type)
   }
-
 }
-// export default {
-//   name: "Types"
-// }
 </script>
 
 <style lang="scss" scoped>
