@@ -19,18 +19,7 @@ import Types from '@/components/Money/Types.vue';
 import Notes from '@/components/Money/Notes.vue';
 import Tags from '@/components/Money/Tags.vue';
 
-const version = window.localStorage.getItem('version') || '0';
 const recordList: Recorde[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
-
-if (version === '0.0.1') {
-  //数据库升级，数据迁移
-  recordList.forEach(record => {
-    record.createAt = new Date(2022, 0, 1);
-  });
-  //保存数据
-  window.localStorage.setItem('recordList', JSON.stringify(recordList));
-}
-window.localStorage.setItem('version', '0.0.2');
 
 type Recorde = {
   tags: string[]
