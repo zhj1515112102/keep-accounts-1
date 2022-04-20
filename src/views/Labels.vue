@@ -1,15 +1,17 @@
 <template>
-    <Layout>
-      <ol class="tags">
-        <li v-for="tag in tags" :key="tag.id">
-          <span>{{tag.name}}</span>
-          <Icon icon-name="right"/>
-        </li>
-      </ol>
-      <div class="createTag-wrapper">
-        <button class="createTag" @click="createTag">新建标签</button>
-      </div>
-    </Layout>
+  <Layout>
+    <div class="tags">
+      <router-link class="tag"
+                   v-for="tag in tags" :key="tag.id"
+                   :to="`/labels/edit/${tag.id}`">
+        <span>{{ tag.name }}</span>
+        <Icon icon-name="right"/>
+      </router-link>
+    </div>
+    <div class="createTag-wrapper">
+      <button class="createTag" @click="createTag">新建标签</button>
+    </div>
+  </Layout>
 </template>
 
 <script lang="ts">
@@ -19,16 +21,17 @@ import tagList_Model from '@/models/tagList_Model';
 
 tagList_Model.fetch();
 @Component
-export default class Labels extends Vue{
+export default class Labels extends Vue {
   tags = tagList_Model.data;
-  createTag(){
-    const name = window.prompt("请输入标签名")
-    if(name){
-      const message = tagList_Model.create(name)
-      if(message === 'duplicated'){
+
+  createTag() {
+    const name = window.prompt('请输入标签名');
+    if (name) {
+      const message = tagList_Model.create(name);
+      if (message === 'duplicated') {
         window.alert('标签重复');
-      }else if(message === 'success'){
-        window.alert('添加成功')
+      } else if (message === 'success') {
+        window.alert('添加成功');
       }
     }
   }
@@ -36,35 +39,39 @@ export default class Labels extends Vue{
 </script>
 
 <style lang="scss" scoped>
-  .tags{
-    background: white;
-    font-size: 16px;
-    padding-left: 16px;
-    >li{
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #e6e6e6;
-    }
-    svg{
-      width: 16px;
-      height: 16px;
-      color: #666;
-      margin-right: 16px;
-    }
+.tags {
+  background: white;
+  font-size: 16px;
+  padding-left: 16px;
+
+  > .tag {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
   }
-  .createTag{
-    background: #767676;
-    color: white;
-    border-radius: 8px;
-    border: none;
-    height: 40px;
-    padding: 0 16px;
-    &-wrapper{
-      text-align: center;
-      padding: 16px;
-      margin-top: 44-16px;
-    }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: #666;
+    margin-right: 16px;
   }
+}
+
+.createTag {
+  background: #767676;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  height: 40px;
+  padding: 0 16px;
+
+  &-wrapper {
+    text-align: center;
+    padding: 16px;
+    margin-top: 44-16px;
+  }
+}
 </style>
