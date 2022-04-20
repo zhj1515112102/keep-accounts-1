@@ -49,7 +49,7 @@ export default class Tage extends Vue {
   display: flex;
   flex-grow: 1;
   flex-direction: column-reverse;
-
+  background: white;
   > .currentTag {
     display: flex;
     flex-wrap: wrap;
