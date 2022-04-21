@@ -1,6 +1,6 @@
 <template>
-    <svg class="icon">
-      <use v-bind:xlink:href="'#'+iconName"/>
+    <svg class="icon" @click="$emit('click',$event)">
+      <use :xlink:href="'#'+iconName"/>
     </svg>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .icon {
   width: 1em; height: 1em;
   vertical-align: -0.15em;
