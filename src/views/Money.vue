@@ -58,7 +58,7 @@ export default class Money extends Vue {
 
   @Watch('recordList')
   onRecordListChanged() {
-    recordList_Model.save(this.recordList);
+    recordList_Model.save();
   }
 }
 </script>
