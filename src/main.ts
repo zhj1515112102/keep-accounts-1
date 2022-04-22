@@ -7,6 +7,7 @@ import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import Icon from '@/components/Icon.vue';
 import tagList_Model from '@/models/tagList_Model';
+import recordList_Model from '@/models/recordList_Model';
 
 Vue.config.productionTip = false;
 
@@ -14,10 +15,15 @@ Vue.component('Nav', Nav);
 Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
 
+//record store
+window.recordList = recordList_Model.fetch();
+window.createRecord = (record: RecordItem) => recordList_Model.create(record);
+
+//tag store
 window.tagList = tagList_Model.fetch();
-window.findTag = (id:string)=>{
-  return  window.tagList.filter(t => t.id === id)[0];
-}
+window.findTag = (id: string) => {
+  return window.tagList.filter(t => t.id === id)[0];
+};
 window.createTag = (name: string) => {
   const message = tagList_Model.create(name);
   if (message === 'duplicated') {
@@ -29,9 +35,9 @@ window.createTag = (name: string) => {
 window.removeTag = (id: string) => {
   return tagList_Model.remove(id);
 };
-window.updateTag = (id:string,name:string)=>{
+window.updateTag = (id: string, name: string) => {
   return tagList_Model.update(id, name);
-}
+};
 
 new Vue({
   router,
