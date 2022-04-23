@@ -11,7 +11,6 @@
     </div>
     <Tags @update:value="onUpdateTags"/>
   </Layout>
-
 </template>
 
 <script lang="ts">
@@ -22,21 +21,23 @@ import NumberPad from '@/components/Money/NumberPad.vue';
 import Types from '@/components/Money/Types.vue';
 import FormItem from '@/components/Money/FormItem.vue';
 import Tags from '@/components/Money/Tags.vue';
-import store from '@/store/index2.ts';
 
 
 @Component({
   components: {FormItem, Tags, Types, NumberPad},
-  computed: {
-    recordList() {
-      return store.recordList;
-    }
-  }
 })
 export default class Money extends Vue {
+  get recordList() {
+    return this.$store.state.recordList;
+  }
+
   record: RecordItem = {
     tags: [], notes: '', type: '-', amount: 0
   };
+
+  created() {
+    this.$store.commit('fetchRecords');
+  }
 
   onUpdateTags(value: string[]) {
     this.record.tags = value;
@@ -51,7 +52,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    store.createRecord(this.record);
+    this.$store.commit('createRecord', this.record);
   }
 }
 </script>
