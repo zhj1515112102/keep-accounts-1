@@ -27,7 +27,7 @@ import Button from '@/components/Button.vue';
 })
 export default class EditLabel extends Vue {
   get currentTag() {
-    return this.$store.state.currenTag;
+    return this.$store.state.currentTag;
   }
 
   created() {

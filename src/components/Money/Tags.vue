@@ -25,6 +25,10 @@ export default class Tage extends mixins(TagHelper) {
 
   selectedTags: string[] = [];
 
+  created(){
+    this.$store.commit('fetchTags')
+  }
+
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {  //取消选中

@@ -1,5 +1,4 @@
 <template>
-
   <Layout class-prefix="layout">
     {{ record }}
     <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
@@ -41,7 +40,6 @@ export default class Money extends Vue {
 
   created() {
     this.$store.commit('fetchRecords');
-    this.$store.commit('fetchTags');
   }
 
   onUpdateTags(value: string[]) {
@@ -62,7 +60,7 @@ export default class Money extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .layout-content {
   display: flex;
   flex-direction: column-reverse;
