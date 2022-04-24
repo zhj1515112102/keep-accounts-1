@@ -41,6 +41,7 @@ export default class Money extends Vue {
 
   created() {
     this.$store.commit('fetchRecords');
+    this.$store.commit('fetchTags');
   }
 
   onUpdateTags(value: string[]) {
