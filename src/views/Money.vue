@@ -42,7 +42,7 @@ export default class Money extends Vue {
     this.$store.commit('fetchRecords');
   }
 
-  onUpdateTags(value: string[]) {
+  onUpdateTags(value: Tag[]) {
     this.record.tags = value;
   }
 
@@ -61,7 +61,7 @@ export default class Money extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.layout-content {
+::v-deep .layout-content {
   display: flex;
   flex-direction: column-reverse;
 }

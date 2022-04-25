@@ -1,5 +1,5 @@
 /*eslint-disable*/
-function clone(data: any) {
+function clone<X>(data: X):X {
   return JSON.parse(JSON.stringify(data));
 }
 
